@@ -1,0 +1,485 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #f5f8fa !important;
+    font: 13px "Trebuchet MS", verdana, arial, sans-serif !important;
+    margin-top: 83px;
+}
+.body-spacer {
+    margin-top: 20px;
+}
+.tab-body {
+    margin-top: 15px;
+}
+fieldset.custom-border {
+    border: 1px solid #dddddd !important;
+    border-radius: 4px;
+    padding: 0 1em 0 1em !important;
+    margin: 0 0 1em 0 !important;
+}
+legend.custom-border {
+    font-size: 13px !important;
+    text-align: left !important;
+    width: auto;
+    padding: 0 5px;
+    border-bottom: none;
+    color: green;
+}
+.panel{
+    border-radius:10px!important;
+}
+.panel-default {
+    border-color: #b7b7b5!important;
+}
+.panel-default > .panel-heading-blue {
+    color: #ffffff;
+    background-color: #0088cc;
+    border-color: #0088cc!important;
+}
+.panel-heading-blue {
+    padding: 10px 15px 13px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 10px!important;
+    border-top-right-radius: 10px!important;
+    font-size: 16px;
+}
+.btn-margin-bottom {
+    margin-bottom:20px;
+}
+.btn-margin-top {
+    margin-top:20px;
+}
+.k-grid-header{
+    background-color: #ffffff!important;
+}
+.k-grid-content tr:hover {
+    background-color: #dfe8cc;
+}
+#toast-container.toast-bottom-full-width>div, #toast-container.toast-top-full-width>div {
+    width: 100%!important;
+    border-radius: 0!important;
+    text-align: center;
+}
+.k-loading-image {
+  background-image: url('./assets/img/ripple.gif');
+}
+.k-icon, .k-icon:focus, .k-icon:hover, .k-link {
+    border-radius: 50%!important;
+}
+.k-link:hover {
+    background-color: #0088cc!important;
+    border-color: #0088cc!important;
+    color: #fff!important;
+}
+.k-link:focus{
+    background-color: #0088cc!important;;
+    color: #fff!important;
+}
+.k-pager-wrap {
+    color: #656565;
+    background-color: #ffffff;
+}
+.alt-row {
+    background-color: #f5f8fa;
+}
+.radio-row:hover{
+    background-color: #dfe8cc;
+}
+.validation-msg {
+    color: maroon;
+}
+.disabled{
+    pointer-events:none;
+    opacity:0.5;
+}
+/*vertically align radio button labels*/
+/*input[type=checkbox],
+input[type=radio   ] {
+    top: 0px;
+}*/
+.addToFormArrayLink{
+   cursor: pointer;
+   margin-left: 15px;
+   font-size:15px;
+   margin-bottom:15px;
+}
+
+.awesome-panel{
+    border-radius:2px!important;
+    background-color: #ffffff;
+}
+
+.awesome-shadow {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.awesome-shadow:hover{
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.glyphicon-remove{
+    cursor: pointer!important;
+}
+/*Save button glyphicon animation on save action*/
+.fa-spin-custom, .glyphicon-spin {
+    -webkit-animation: spin 1000ms infinite linear;
+    animation: spin 1000ms infinite linear;
+}
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg);
+    }
+}
+/*End Save button glyphicon animation on save action*/
+.tree {
+    min-height:850px;
+    max-height:850px;
+    overflow-y:auto;
+    overflow-x:scroll;
+    margin-left: -20px;
+}
+
+.highlight {
+    background-color: #FFF9C4!important;
+}
+.tree li {
+    margin: 0px 0;
+	list-style-type: none;
+    position: relative;
+	padding: 20px 5px 0px 5px;
+}
+
+.tree li::before{
+    content: '';
+	position: absolute;
+    top: 0;
+	width: 1px;
+    height: 100%;
+	right: auto;
+    left: -20px;
+	border-left: 1px solid #666;
+    bottom: 50px;
+}
+.tree li::after{
+    content: '';
+	position: absolute;
+    top: 30px;
+	width: 25px;
+    height: 20px;
+	right: auto;
+    left: -20px;
+	border-top: 1px solid #666;
+}
+
+.tree .firstNode::before {
+      border:0!important;
+}
+
+.tree .firstNode::after {
+      border:0!important;
+}
+
+.tree li .btn-group {
+    display: inline-block;
+	border: 1px solid #ccc;
+	/*padding: 5px 10px;*/
+	text-decoration: none;
+	color: #444444;
+	font-family: arial, verdana, tahoma;
+	font-size: 9px!important;
+    border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+    line-height: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    /*cursor: pointer;*/
+    background-color: #ffffff;
+}
+
+/*Remove connectors after last child*/
+.tree li:last-child::before{
+      height: 30px;
+}
+
+/*Time for some hover effects*/
+/*We will apply the hover effect the the lineage of the element also*/
+.tree li .btn-group:hover, .tree li .btn-group:hover+ul li a {
+    color: #000;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.tree li button {
+    display: inline-block;
+	border: 1px solid #ccc;
+	text-decoration: none;
+	color: #444444;
+	font-family: arial, verdana, tahoma;
+	font-size: 12px!important;
+    background-color: transparent;
+    border: none!important;
+}
+
+.tree li button:focus {
+   background-color: transparent;
+}
+
+.tree li .dropdown-menu li::before, .tree li .dropdown-menu li::after {
+    border: none!important;
+}
+
+.tree li .dropdown-menu li{
+    padding: 0!important;
+}
+
+/*prevent button hover default from overrdiing class that angular toggles*/
+.tree li button:hover {
+    background-color: transparent;
+}
+
+.li-link{
+    cursor: pointer!important;
+    font-size: 12px;
+}
+
+.li-link:hover{
+    color:#000000;
+    text-decoration: underline!important;
+}
+
+.li-caption{
+    color: #005580!important;
+    font-size: 12px;
+}
+
+.tree-dropdown-toggle{
+    border-radius:0;
+    box-shadow:none!important;
+}
+
+/*============ alert css ========*/
+.alert {
+  border-radius: 0;
+  -webkit-border-radius: 0;
+  border: 1px solid #d4d4d4;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  display: table;
+  width: 100%;
+}
+
+.alert:hover {
+    color: #000;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.alert-white {
+  background-image: linear-gradient(to bottom, #ffffff, #ffffff);
+  background-color: #ffffff;
+  border-top-color: #d8d8d8;
+  border-bottom-color: #bdbdbd;
+  border-left-color: #cacaca;
+  border-right-color: #cacaca;
+  color: #404040;
+  padding-left: 61px;
+  position: relative;
+}
+
+.alert-white.rounded {
+  border-radius: 2px;
+  -webkit-border-radius: 2px;
+}
+
+.alert-white.rounded .icon {
+  border-radius: 3px 0 0 3px;
+  -webkit-border-radius: 3px 0 0 3px;
+}
+
+.alert-white .icon {
+  text-align: center;
+  width: 45px;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid #bdbdbd;
+  padding-top: 15px;
+}
+
+.alert-white .icon:after {
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+  display: block;
+  content: '';
+  width: 10px;
+  height: 10px;
+  border: 1px solid #bdbdbd;
+  position: absolute;
+  border-left: 0;
+  border-bottom: 0;
+  top: 50%;
+  right: -6px;
+  margin-top: -3px;
+  background: #fff;
+}
+
+.alert-white .icon i {
+  font-size: 20px;
+  color: #fff;
+  left: 12px;
+  margin-top: -10px;
+  position: absolute;
+  top: 50%;
+}
+/*============ alert colors ========*/
+.alert-success {
+  color: #3c763d;
+  background-color: #dff0d8;
+  border-color: #d6e9c6;
+}
+
+.alert-white.alert-success .icon,
+.alert-white.alert-success .icon:after {
+  border-color: #54a754;
+  background: #60c060;
+}
+
+.alert-info {
+  background-color: #ffffff;
+  border-color: #d4d4d4;
+  color: #005580;
+}
+
+.alert-white.alert-info .icon,
+.alert-white.alert-info .icon:after {
+  background-color: #0088cc;
+  border-color:#0077b3;
+}
+
+.alert-white.alert-warning .icon,
+.alert-white.alert-warning .icon:after {
+  border-color: #d68000;
+  background: #fc9700;
+}
+
+.alert-warning {
+  background-color: #fcf8e3;
+  border-color: #f1daab;
+  color: #c09853;
+}
+
+.alert-danger {
+  background-color: #f2dede;
+  border-color: #e0b1b8;
+  color: #b94a48;
+}
+
+.alert-white.alert-danger .icon,
+.alert-white.alert-danger .icon:after {
+  border-color: #ca452e;
+  background: #da4932;
+}
+.btnPanel {
+    padding: 2px 12px!important;
+    color: #fff;
+    background-color: #c40;
+    border-color: #930;
+    font-size: 13px!important;
+}
+.btnPanel:hover {
+    color: #fff!important;
+    background-color:#d15619;
+    border-color: #c40;
+}
+
+.btnPanel:focus {
+    color: #fff!important;
+}
+
+/*Card list*/
+
+.card {
+    border: 1px solid #d4d4d4;
+    height:142px;
+    margin-bottom: 20px;
+    position: relative;
+    border-radius:2px;
+    cursor:pointer;
+    background-color: #ffffff;
+    overflow-y:hidden;
+}
+.card-header {
+    background-color: #fafafa;
+    font-size:11pt;
+    padding:5px;
+    width:100%;
+    border-top-left-radius:2px;
+    border-top-right-radius:2px;
+    border-bottom: solid #b7b7b5 1px;
+}
+.card-body {
+    padding: 10px;
+}
+
+.card-header-text {
+    color:#666666;
+    letter-spacing: 1px;
+    margin-left: 7px;
+    font-weight: 600;
+}
+
+.card-subHeader-text {
+    color:#00897B;
+    font-weight:600;
+    border-bottom: 1px #eee solid;
+    margin-bottom: 5px;
+}
+
+.card p {
+    visibility: hidden;
+}
+
+/*.card:hover p {
+    visibility: visible;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    margin: 0;
+    padding: 0;
+    line-height: 110px;
+    vertical-align: middle;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(0,0,0,0.75);
+    transition: background .2s linear, color .2s linear;
+    -moz-transition: background .2s linear, color .2s linear;
+    -webkit-transition: background .2s linear, color .2s linear;
+    -o-transition: background .2s linear, color .2s linear;
+}*/
+
+/*End Card list*/
+
+
+
+
+
+

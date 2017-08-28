@@ -1,0 +1,85 @@
+<form [formGroup]="frmWorkflowEdit" novalidate (ngSubmit)="saveRelationship()">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <fieldset class="custom-border">
+          <legend class="custom-border">{{fieldSetLegend}}</legend>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+              <div class="alert alert-info alert-white rounded">
+                <button type="button" data-dismiss="alert" aria-hidden="true" class="close">×</button>
+                  <div class="icon"><i class="glyphicon glyphicon-info-sign"></i></div>
+                  {{alertInfoMsg}}
+              </div>
+              <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <label>Service Type</label>&nbsp;<small class="text-danger">*</small>
+                <select formControlName="ServiceTypeChildID" class="form-control">
+                <option value="">- Select Service Type -</option>
+                <option *ngFor="let type of serviceTypes" [value]="type.ServiceTypeID">{{type.ServiceTypeName}} - {{type.ServiceTypeID}}</option>
+                </select>
+                <span class="help-block validation-msg" *ngIf="(frmWorkflowEdit.get('ServiceTypeChildID').touched ||
+                frmWorkflowEdit.get('ServiceTypeChildID').dirty) &&
+                (frmWorkflowEdit.get('ServiceTypeChildID').errors)">Selection required.</span>
+              </div>
+              <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <label>Parent</label>&nbsp;<small class="text-danger">*</small>
+                <select formControlName="ServiceTypeParentID" class="form-control">
+                <option value="">- Select Parent Service Type -</option>
+                <option *ngFor="let type of serviceTypeRelationships" [value]="type.ServiceType1.ServiceTypeID">{{type.ServiceType1.ServiceTypeName}} - {{type.ServiceType1.ServiceTypeID}}</option>
+                </select>
+                <span class="help-block validation-msg" *ngIf="(frmWorkflowEdit.get('ServiceTypeParentID').touched ||
+                frmWorkflowEdit.get('ServiceTypeParentID').dirty) &&
+                (frmWorkflowEdit.get('ServiceTypeParentID').errors)">Selection required.</span>
+              </div>
+              <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <label>Service Type Is Created</label>&nbsp;<small class="text-danger">*</small>
+                <select formControlName="ServiceTypeChildStartTriggerID" class="form-control">
+                <option *ngFor="let option of startTriggerOptions" [value]="option.IntValue">{{option.Label}}</option>
+                </select>
+                <span class="help-block validation-msg" *ngIf="(frmWorkflowEdit.get('ServiceTypeChildStartTriggerID').touched ||
+                frmWorkflowEdit.get('ServiceTypeChildStartTriggerID').dirty) &&
+                (frmWorkflowEdit.get('ServiceTypeChildStartTriggerID').errors)">Selection required.</span>
+              </div>
+              <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <label>Start Delay in Days</label>&nbsp;<small class="text-danger">*</small>
+                <input formControlName="ServiceTypeChildStartDelay" type="number" class="form-control" placeholder="Enter Number">
+                <span class="help-block validation-msg" *ngIf="(frmWorkflowEdit.get('ServiceTypeChildStartDelay').touched ||
+                      frmWorkflowEdit.get('ServiceTypeChildStartDelay').dirty) &&
+                      (frmWorkflowEdit.get('ServiceTypeChildStartDelay').errors)">Required (0 or greater).</span>
+              </div>
+              <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <label>Expected Duration in Days</label>&nbsp;<small class="text-danger">*</small>
+                <input formControlName="ServiceTypeChildDuration" type="number" class="form-control" placeholder="Enter Number">
+                <span class="help-block validation-msg" *ngIf="(frmWorkflowEdit.get('ServiceTypeChildDuration').touched ||
+                      frmWorkflowEdit.get('ServiceTypeChildDuration').dirty) &&
+                      (frmWorkflowEdit.get('ServiceTypeChildDuration').errors)">Required (greater than 0).</span>
+              </div>
+              <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <label>Is Required</label>&nbsp;<small class="text-danger">*</small>
+                <select formControlName="ServiceTypeChildRequiredFlag" class="form-control">
+                <option *ngFor="let option of booleanOptions" [value]="option.BlnValue">{{option.Label}}</option>
+                </select>
+                <span class="help-block validation-msg" *ngIf="(frmWorkflowEdit.get('ServiceTypeChildRequiredFlag').touched ||
+                      frmWorkflowEdit.get('ServiceTypeChildRequiredFlag').dirty) &&
+                      (frmWorkflowEdit.get('ServiceTypeChildRequiredFlag').errors)">Selection required.</span>
+              </div>
+              <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <label>Is Checked By Default</label>&nbsp;<small class="text-danger">*</small>
+                <select formControlName="ServiceTypeChildCheckedByDefaultFlag" class="form-control">
+                <option *ngFor="let option of booleanOptions" [value]="option.BlnValue">{{option.Label}}</option>
+                </select>
+                <span class="help-block validation-msg" *ngIf="(frmWorkflowEdit.get('ServiceTypeChildCheckedByDefaultFlag').touched ||
+                      frmWorkflowEdit.get('ServiceTypeChildCheckedByDefaultFlag').dirty) &&
+                      (frmWorkflowEdit.get('ServiceTypeChildCheckedByDefaultFlag').errors)">Selection required.</span>
+              </div>
+              <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="pull-right">
+                  <button type="submit" class="btn btn-primary btn-margin-bottom" [disabled]="!frmWorkflowEdit.valid || generalService.disableButton">
+                  <span *ngIf="generalService.disableButton"><i class="glyphicon glyphicon-refresh glyphicon-spin"></i></span>
+                  {{generalService.saveButtonText}}
+                  </button>
+                  <!--<button type="button" class="btn btn-warning btn-margin-bottom" (click)="addNew()" [disabled]="generalService.disableButton">New</button>-->
+                  <button type="button" class="btn btn-success btn-margin-bottom" (click)="goBack()" [disabled]="generalService.disableButton">Go Back</button>
+                </div>
+              </div>
+          </div>
+    </fieldset>
+  </div>
+</form>

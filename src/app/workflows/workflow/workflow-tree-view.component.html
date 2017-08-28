@@ -1,0 +1,32 @@
+<ul>
+  <li *ngFor="let node of workflowNodes" [class.firstNode]="node.ServiceTypeRelationshipDefinitionID === 0">
+  <div title="ServiceTypeRelationshipID {{node.ServiceTypeRelationshipDefinitionID}}, ServiceTypeID {{node.ServiceTypeID}}" [class.highlight]="node.HighlightNode" (mouseout)='node.onMouseout()' (mouseover)='node.onMouseover()' class="btn-group">
+    <button (click)="node.toggle()" class="btn btn-default" type="button">{{node.ServiceTypeName}}</button>
+    <button class="btn btn-default dropdown-toggle tree-dropdown-toggle" aria-expanded="false" aria-haspopup="true" type="button" data-toggle="dropdown">
+      <span class="caret"></span>
+      <span class="sr-only">Toggle Dropdown</span>
+    </button>
+      <ul class="dropdown-menu" *ngIf="node.ServiceTypeRelationshipDefinitionID === 0">
+        <li><a class="li-link" (click)="workflowService.setServiceTypeRelationshipDefinitionID(node.ServiceTypeRelationshipDefinitionID, node.ServiceTypeID)">Add Child</a></li>
+      </ul>
+      <ul class="dropdown-menu" *ngIf="node.ServiceTypeRelationshipDefinitionID > 0">
+          <li><a class="li-link" (click)="workflowService.setServiceTypeRelationshipDefinitionID(node.ServiceTypeRelationshipDefinitionID, 0)">Edit</a></li>
+          <li><a class="li-link" (click)="workflowService.setServiceTypeRelationshipDefinitionID(node.ServiceTypeRelationshipDefinitionID, node.ServiceTypeID)">Add Child</a></li>
+          <li><a class="li-link" (click)="deleteServiceTypeRelationship(node.ServiceTypeRelationshipDefinitionID, 0)">Delete and Link Decendants to Root</a></li>
+          <li><a class="li-link" (click)="deleteServiceTypeRelationship(node.ServiceTypeRelationshipDefinitionID, 2)">Delete and Link Decendants to Parent</a></li>
+          <li><a class="li-link" (click)="deleteServiceTypeRelationship(node.ServiceTypeRelationshipDefinitionID, 1)">Delete with Decendants</a></li>
+          <li class="divider" role="separator"></li>
+          <li><a class="li-caption">Service Type ID: {{node.ServiceTypeID}}</a></li>
+          <li><a class="li-caption">Trigger: {{node.ServiceTypeStartTrigger}}</a></li>
+          <li><a class="li-caption">{{node.ServiceTypeShowAsStandaloneService}}</a></li>
+          <li><a class="li-caption">{{node.ClosesWithDependantWorkflows}}</a></li>
+          <li><a class="li-caption">{{node.ConcurrentCreationOfChildren}}</a></li>
+      </ul>
+    </div>
+      <!--<ul>
+        <li *ngFor="let file of node.Files">{{file}}</li>
+      </ul>-->
+    <app-workflow-tree-view *ngIf="node.Expanded" [workflowNodes]="node.WorkflowNodes"></app-workflow-tree-view>
+  </li>
+</ul>
+

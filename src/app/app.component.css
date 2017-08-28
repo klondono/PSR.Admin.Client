@@ -1,0 +1,103 @@
+.pa-sharepoint-banner {
+    display: block;
+    padding: 7px;
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    background-color: #404040;
+    border-bottom: 3px solid #b8b8b8;
+}
+
+.pa-sharepoint-banner-text {
+    font-weight: normal;
+    font-size: 15px;
+    padding-top: 12px;
+}
+
+.pa-sharepoint-banner-text-appname {
+    display: inline;
+    line-height: 41px;
+    font-weight: normal;
+    font-size: 15px;
+    padding-top: 12px;
+}
+
+.pa-navbar {
+    background-color: #005580;
+    border-color: #005580;
+    min-height: 27px !important;
+    position: fixed;
+    top: 58px;
+    right: 0;
+    left: 0;
+}
+
+.pa-navbar-brand {
+    color: #ffffff;
+}
+
+.pa-brand-image {
+    float: left;
+    height: 50px;
+    padding: 15px 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.pa-nav > li > a {
+    color: #ffffff;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    line-height: 22px;
+}
+
+.pa-navbar-brand-toggle {
+    display: none;
+}
+
+.nav > li > a:focus, .nav > li > a:hover, .navbar-brand:hover, .navbar-brand:focus, .open > a, .open > a:focus, .nav .open > a:hover {
+    text-decoration: none;
+    background-color: #006699 !important;
+    color: #ffffff;
+}
+
+.pa-navbar-toggle {
+    background-color: #006699;
+}
+
+.pa-navbar-toggle > .icon-bar {
+    background-color: #ffffff;
+}
+
+@media screen and (max-width: 767px) {
+    .navbar-nav .open .dropdown-menu {
+        width:100%!important;
+        background-color:#ffffff;
+        border-radius:0!important;
+    }
+    .navbar-nav .open .dropdown-menu .dropdown-header, .navbar-nav .open .dropdown-menu > li > a {
+        padding: 5px 15px 5px 25px;
+    }
+}
+
+/*ONLY WHEN MENU SITS BELOW*/
+@media screen and (max-width: 991px) {
+    .pa-sharepoint-banner {
+        display: none !important;
+    }
+
+    .pa-navbar {
+        top: 0 !important;
+    }
+
+    .pa-navbar-brand-toggle {
+        display: block !important;
+    }
+
+    .pa-nav > li > a {
+        padding-top: 15px !important;
+        padding-bottom: 13px !important;
+    }
+}
+/*END ONLY WHEN MENU SITS BELOW*/
+

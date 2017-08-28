@@ -1,0 +1,22 @@
+<div class="panel panel-default" *ngIf="actionTypes">
+  <div class="panel-heading-blue">
+    Action Types<div class="pull-right"><button class="btn btnPanel awesome-shadow" (click)="goToActionType(0)">Add New</button></div>
+  </div>
+  <div class="panel-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-4" *ngFor="let actionType of actionTypes">
+          <div class="card awesome-shadow" (click)="goToActionType(actionType.RequestActionTypeID)">
+            <div class="card-header" [style.background-color]="actionType.BackgroundColor">
+              <div class="card-header-text" [style.color]="actionType.TextColor">{{actionType.RequestActionTypeName}}</div>
+            </div>
+            <div class="card-body">
+                <div>{{actionType.RequestActionTypeDescription}}</div>
+            </div>
+            <p>Edit {{actionType.RequestActionTypeName}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

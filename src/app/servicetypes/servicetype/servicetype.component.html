@@ -1,0 +1,19 @@
+<div class="panel panel-default">
+    <div class="panel-heading-blue">
+        {{panelHeaderInfo?.panelTitle}}
+        <div class="pull-right">
+            <button *ngIf="!disableTab" class="btn btnPanel awesome-shadow" (click)="cloneServiceType()">Clone Sevice Type</button>
+        </div>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-tabs">
+            <li [class.active]="isGeneral"><a routerLink="Edit" routerLinkActive="active">General</a></li>
+            <li [class.active]="isKeywords" [class.disabled]="disableTab"><a routerLink="Keywords" routerLinkActive="active">Add Search Tags</a></li>
+            <li [class.active]="isActionTypes" [class.disabled]="disableTab"><a routerLink="ActionTypes" routerLinkActive="active">Link Action Types</a></li>
+            <li [class.active]="isCustomFields" [class.disabled]="disableTab"><a routerLink="CustomFields" routerLinkActive="active">Custom Fields</a></li>
+        </ul>
+        <div class="tab-body">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

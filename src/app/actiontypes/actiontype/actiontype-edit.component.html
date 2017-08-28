@@ -1,0 +1,100 @@
+<form *ngIf="frmActionTypeEdit" [formGroup]="frmActionTypeEdit" novalidate (ngSubmit)="saveActionType()">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <fieldset class="custom-border">
+                  <legend class="custom-border">General Info</legend>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                              <label for="txtRequestActionTypeName">Action Type Name</label>&nbsp;<small class="text-danger">*</small>
+                              <input maxlength="50" formControlName="RequestActionTypeName" type="text" class="form-control" name="txtRequestActionTypeName" placeholder="Action type name">
+                              <span class="help-block validation-msg" *ngIf="(frmActionTypeEdit.get('RequestActionTypeName').touched ||
+                              frmActionTypeEdit.get('RequestActionTypeName').dirty) &&
+                              (frmActionTypeEdit.get('RequestActionTypeName').errors)">Required (maximum 50 characters).</span>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                              <label for="txtBackgroundColor">Background Color</label>&nbsp;<small class="text-danger">*</small>
+                              <input maxlength="7" formControlName="BackgroundColor" type="text" class="form-control" name="txtBackgroundColor">
+                              <!--<input maxlength="7" [cpOKButton]="true" class="form-control" [colorPicker]="currentBackgroundColor" (colorPickerChange)="onColorPickerChange($event)" name="txtBackgroundColor" formControlName="BackgroundColor" 
+                              [style.background-color]="currentBackgroundColor"/>-->
+                              <span class="help-block validation-msg" *ngIf="(frmActionTypeEdit.get('BackgroundColor').touched ||
+                              frmActionTypeEdit.get('BackgroundColor').dirty) &&
+                              (frmActionTypeEdit.get('BackgroundColor').errors)">Required.</span>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                              <label for="txtTextColor">Text Color</label>&nbsp;<small class="text-danger">*</small>
+                              <input maxlength="7" formControlName="TextColor" type="text" class="form-control" name="txtTextColor">
+                              <span class="help-block validation-msg" *ngIf="(frmActionTypeEdit.get('TextColor').touched ||
+                              frmActionTypeEdit.get('TextColor').dirty) &&
+                              (frmActionTypeEdit.get('TextColor').errors)">Required.</span>
+                        </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                              <label for="txtRequestActionTypeDescription">Description</label>&nbsp;<small class="text-danger">*</small>
+                              <input maxlength="255" formControlName="RequestActionTypeDescription" type="text" class="form-control" name="txtRequestActionTypeDescription" placeholder="Description">
+                              <span class="help-block validation-msg" *ngIf="(frmActionTypeEdit.get('RequestActionTypeDescription').touched ||
+                              frmActionTypeEdit.get('RequestActionTypeDescription').dirty) &&
+                              (frmActionTypeEdit.get('RequestActionTypeDescription').errors)">Required (maximum 255 characters).</span>
+                        </div>
+                  </div>
+            </fieldset>
+            <fieldset class="custom-border">
+                  <legend class="custom-border">Behavior</legend>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                              <div class="checkbox">
+                                    <label><input formControlName="ChangeRequestStatusFlag" type="checkbox" [value]="ChangeRequestStatusFlag">Updates PSR Status</label>
+                              </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                              <div class="checkbox">
+                                    <label><input formControlName="ReassignRequestFlag" type="checkbox" [value]="ReassignRequestFlag">Reassigns PSR</label>
+                              </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                              <div class="checkbox">
+                                    <label><input formControlName="UploadDocumentFlag" type="checkbox" [value]="UploadDocumentFlag">Uploads Documents</label>
+                              </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                              <div class="checkbox">
+                                    <label><input formControlName="AllowReplicationFlag" type="checkbox" [value]="AllowReplicationFlag">Enable Replication of Action Type</label>
+                              </div>
+                        </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                              <div class="checkbox">
+                                    <label><input formControlName="AllowUpdateOfServiceTypeFlag" type="checkbox" [value]="AllowUpdateOfServiceTypeFlag">Updates PSR Service Type</label>
+                              </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                              <div class="checkbox">
+                                    <label><input formControlName="DisplayFlag" type="checkbox" [value]="DisplayFlag">Display in Action History</label>
+                              </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                              <div class="checkbox">
+                                    <label><input formControlName="AllowUpdateOfRequestFolioFlag" type="checkbox" [value]="AllowUpdateOfRequestFolioFlag">Updates PSR Folio(s)</label>
+                              </div>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                              <div class="checkbox">
+                                    <label><input formControlName="ByPassClientSideValidationFlag" type="checkbox" [value]="ByPassClientSideValidationFlag">Bypass Client Side Validation</label>
+                              </div>
+                              <!--<div class="checkbox">
+                                    <label><input formControlName="SystemReservedFlag" type="checkbox" [value]="SystemReservedFlag">For Use by Application Only</label>
+                              </div>-->
+                        </div>
+                  </div>
+            </fieldset>
+      </div>
+      <div class="form-group col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="pull-right">
+            <button type="submit" class="btn btn-primary btn-margin-bottom" [disabled]="!frmActionTypeEdit.valid || generalService.disableButton">
+            <span *ngIf="generalService.disableButton"><i class="glyphicon glyphicon-refresh glyphicon-spin"></i></span>
+            {{generalService.saveButtonText}}
+            </button>
+            <button type="button" class="btn btn-success btn-margin-bottom" (click)="goBack()" [disabled]="generalService.disableButton">Go Back</button>
+            </div>
+      </div>
+</form>

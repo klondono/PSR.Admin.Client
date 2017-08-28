@@ -1,0 +1,39 @@
+<form class="form-horizontal" *ngIf="frmServiceTypeKeywordEdit" [formGroup]="frmServiceTypeKeywordEdit" novalidate (ngSubmit)="saveSearchTerms()">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <fieldset class="custom-border">
+      <legend class="custom-border">Search Tags</legend>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div formArrayName="searchTerms">
+          <div class="form-group" *ngFor="let searchTerm of searchTermArray.controls; let i=index">
+            <div [formGroupName]="i">
+              <label class="col-md-2 control-label" [attr.for]="i">Tag {{i + 1}}</label>
+              <div class="col-md-8">
+                <div class="input-group">
+                  <input type="text" class="form-control" [id]="i" type="text" placeholder="Keyword or phrase" formControlName="ServiceTypeSearchKeywordName">
+                  <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" (click)="removeSearchTerm(i)"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                  </span>
+                </div>
+                <small [hidden]="frmServiceTypeKeywordEdit.get('searchTerms').at(i).get('ServiceTypeSearchKeywordName').valid && !submitted" class="text-danger">
+                      Search tag is required.
+                </small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-left: 177px;" class="addToFormArrayLink">
+          <a (click)="addSearchTerm()">Add another search tag +</a>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="pull-right">
+          <button type="submit" class="btn btn-primary btn-margin-bottom" [disabled]="!frmServiceTypeKeywordEdit.valid || generalService.disableButton">
+          <span *ngIf="generalService.disableButton"><i class="glyphicon glyphicon-refresh glyphicon-spin"></i></span>
+              {{generalService.saveButtonText}}
+          </button>
+          <button type="button" class="btn btn-success btn-margin-bottom" (click)="goBack()" [disabled]="generalService.disableButton">Go Back</button>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+</form>

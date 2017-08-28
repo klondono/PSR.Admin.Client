@@ -1,0 +1,257 @@
+<form *ngIf="frmServiceTypeEdit" [formGroup]="frmServiceTypeEdit" novalidate (ngSubmit)="saveServiceType()">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <fieldset class="custom-border">
+                  <legend class="custom-border">General Info</legend>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                              <label for="txtServiceTypeName">Service Type Name</label>&nbsp;<small class="text-danger">*</small>
+                              <input (contextmenu)="onContextMenu($event, 'ServiceTypeName')" formControlName="ServiceTypeName" type="text" class="form-control" name="txtServiceTypeName" placeholder="Service type name">
+                              <span class="help-block validation-msg" *ngIf="(frmServiceTypeEdit.get('ServiceTypeName').touched ||
+                  frmServiceTypeEdit.get('ServiceTypeName').dirty) &&
+                  (frmServiceTypeEdit.get('ServiceTypeName').errors)">Required (between 5 - 50 characters).</span>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                              <label for="txtServiceTypeNumber">Numeric Grouping Identifier</label>&nbsp;<small class="text-danger">*</small>
+                              <input id="txtServiceTypeNumber" formControlName="ServiceTypeNumber" type="number" class="form-control" name="txtServiceTypeNumber" placeholder="Service type number">
+                              <span class="help-block validation-msg" *ngIf="(frmServiceTypeEdit.get('ServiceTypeNumber').touched ||
+                  frmServiceTypeEdit.get('ServiceTypeNumber').dirty) &&
+                  (frmServiceTypeEdit.get('ServiceTypeNumber').errors)">Required (greater than 0).</span>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                              <label for="ddlDefaultRequestStatusID">Default Status</label>&nbsp;<small class="text-danger">*</small>
+                              <select name="ddlDefaultRequestStatusID" formControlName="DefaultRequestStatusID" class="form-control">
+            <option value="">- Select Default Status -</option>
+            <option *ngFor="let status of requestStatuses" [value]="status.RequestStatusID">{{status.RequestStatusName}}</option>
+            </select>
+                              <span class="help-block validation-msg" *ngIf="(frmServiceTypeEdit.get('DefaultRequestStatusID').touched ||
+                  frmServiceTypeEdit.get('DefaultRequestStatusID').dirty) &&
+                  (frmServiceTypeEdit.get('DefaultRequestStatusID').errors)">Selection required.</span>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                              <label for="txtServiceTypeAvailableToActiveDirectoryGroupName">Available To</label>&nbsp;
+                              <small class="text-danger">*</small>
+                              <input formControlName="ServiceTypeAvailableToActiveDirectoryGroupName" type="text" class="form-control" name="txtServiceTypeAvailableToActiveDirectoryGroupName"
+                                    placeholder="Active Directory Group">
+                              <span class="help-block validation-msg" *ngIf="(frmServiceTypeEdit.get('ServiceTypeAvailableToActiveDirectoryGroupName').touched ||
+                  frmServiceTypeEdit.get('ServiceTypeAvailableToActiveDirectoryGroupName').dirty) &&
+                  (frmServiceTypeEdit.get('ServiceTypeAvailableToActiveDirectoryGroupName').errors)">Required (between 5 - 100 characters).</span>
+                        </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+                              <label for="txtServiceTypeDefaultDuration">Expected Duration in Days</label>&nbsp;<small class="text-danger">*</small>
+                              <input formControlName="ServiceTypeDefaultDuration" type="number" class="form-control" name="txtServiceTypeDefaultDuration"
+                                    placeholder="Number of Days">
+                              <span class="help-block validation-msg" *ngIf="(frmServiceTypeEdit.get('ServiceTypeDefaultDuration').touched ||
+                  frmServiceTypeEdit.get('ServiceTypeDefaultDuration').dirty) &&
+                  (frmServiceTypeEdit.get('ServiceTypeDefaultDuration').errors)">Required (greater than 0).</span>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                              <label for="ddlEscalationExpectedStatusID">Expected Status after Duration Expires</label>&nbsp;
+                              <small class="text-danger">*</small>
+                              <select name="ddlEscalationExpectedStatusID" formControlName="EscalationExpectedStatusID" class="form-control width-expectedStatus">
+            <option value="">- Select Expected Status -</option>
+            <option *ngFor="let status of requestStatuses" [value]="status.RequestStatusID">{{status.RequestStatusName}}</option>
+            </select>
+                              <span class="help-block validation-msg" *ngIf="(frmServiceTypeEdit.get('EscalationExpectedStatusID').touched ||
+                  frmServiceTypeEdit.get('EscalationExpectedStatusID').dirty) &&
+                  (frmServiceTypeEdit.get('EscalationExpectedStatusID').errors)">Selection required.</span>
+                        </div>
+                        <div class="form-group col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                        </div>
+                  </div>
+            </fieldset>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <fieldset class="custom-border">
+                  <legend class="custom-border">Behavior</legend>
+                  <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                              <div class="form-group">
+                                    <div class="checkbox">
+                                          <label><input formControlName="ServiceTypeShowAsStandaloneServiceFlag" type="checkbox" [value]="ServiceTypeShowAsStandaloneServiceFlag">Appears In New Request Form Select List</label>
+                                    </div>
+                              </div>
+                              <div class="form-group">
+                                    <div class="checkbox">
+                                          <label><input formControlName="SelectableOnServiceTypeUpdateFlag" type="checkbox" [value]="SelectableOnServiceTypeUpdateFlag">Appears In Update Service Type List</label>
+                                    </div>
+                              </div>
+                              <div class="form-group">
+                                    <div class="checkbox">
+                                          <label><input formControlName="ServiceTypeConcurrentCreationOfChildrenFlag" type="checkbox" [value]="ServiceTypeConcurrentCreationOfChildrenFlag">When Applicable, Dependant Requests Are Generated Concurrently</label>
+                                    </div>
+                              </div>
+                              <div class="form-group">
+                                    <div class="checkbox">
+                                          <label><input formControlName="ServiceTypeParentClosesWhenChildrenClosedFlag" type="checkbox" [value]="ServiceTypeParentClosesWhenChildrenClosedFlag">When Applicable, Request Closes When Dependant Requests Close</label>
+                                    </div>
+                              </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                              <div class="form-group">
+                                    <div class="checkbox">
+                                          <label><input formControlName="ServiceTypeIncludeFirstActionCommentFlag" type="checkbox" [value]="ServiceTypeIncludeFirstActionCommentFlag">Include PA Staff Comments In New Request Form</label>
+                                    </div>
+                              </div>
+                              <div class="form-group">
+                                    <div class="checkbox">
+                                          <label><input formControlName="ServiceTypeIncludePropertyInfoFlag" type="checkbox" [value]="ServiceTypeIncludePropertyInfoFlag">Include Property Folio Information In New Request Form</label>
+                                    </div>
+                              </div>
+                              <div class="form-group subFormControl">
+                                    <label for="ddlDefaultRequestFolioTypeID">Default Property Type Preference</label>
+                                    <select name="ddlDefaultRequestFolioTypeID" formControlName="DefaultRequestFolioTypeID" class="form-control  width-fix">
+               <option *ngFor="let type of requestFolioTypes" [value]="type.RequestFolioTypeID">{{type.RequestFolioTypeName}}</option>
+               </select>
+                                    <div class="form-group subFormControl">
+                                          <div class="checkbox">
+                                                <label><input formControlName="ForceRequestFolioType" type="checkbox" [value]="ForceRequestFolioType">Restrict To Property Type Preference</label>
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </fieldset>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <fieldset class="custom-border">
+                  <legend class="custom-border">Assignment Options</legend>
+                  <div class="form-inline">
+                        <div class="row">
+                              <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
+                                    <div class="form-group">
+                                          <label for="ddlServiceTypeOwnerGroupID">Default Business Area Assignment</label>&nbsp;&nbsp;
+                                          <select name="ddlServiceTypeOwnerGroupID" formControlName="ServiceTypeOwnerGroupID" class="form-control width-fix">
+                  <option value="">- Select Default Business Area -</option>
+                  <option [title]="getToolTipMessage(group)" *ngFor="let group of serviceTypeOwnerGroups" [value]="group.ServiceTypeOwnerGroupID">{{group.ServiceTypeOwnerGroupName}}</option>
+                  </select>
+                                          <span class="help-block validation-msg" *ngIf="(frmServiceTypeEdit.get('ServiceTypeOwnerGroupID').touched ||
+                  frmServiceTypeEdit.get('ServiceTypeOwnerGroupID').dirty) &&
+                  (frmServiceTypeEdit.get('ServiceTypeOwnerGroupID').errors)">Selection required.</span>
+                                    </div>
+                              </div>
+                        </div>
+                        <div class="row">
+                              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                    <div class="form-group">
+                                          <div class="checkbox-control">
+                                                <div class="checkbox">
+                                                      <label><input formControlName="ServiceTypeAssigneeDependantOnPropertyFlag" type="checkbox" [value]="ServiceTypeAssigneeDependantOnPropertyFlag">&nbsp;Assign Based On Request's Property Folio District</label>
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                        </div>
+                        <div class="row">
+                              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                    <div class="form-group">
+                                          <div class="checkbox-control">
+                                                <div class="checkbox">
+                                                      <label><input formControlName="ServiceTypeAssigneeDependantOnOriginFlag" type="checkbox" [value]="ServiceTypeAssigneeDependantOnOriginFlag">&nbsp;Assign Based On Request's' Origin</label>
+                                                </div>
+                                          </div>
+                                    </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                    <div class="form-group">
+                                          <label for="ddlServiceTypeDependantOriginID">If Origin Is</label>&nbsp;
+                                          <select formControlName="ServiceTypeDependantOriginID" name="ddlServiceTypeDependantOriginID" class="form-control width-fix">
+                  <option value="">- Select Origin -</option>
+                  <option *ngFor="let origin of requestOrigins" [value]="origin.RequestOriginID">{{origin.RequestOriginName}}</option>
+                  </select>
+                                          <span class="help-block validation-msg" *ngIf="(frmServiceTypeEdit.get('ServiceTypeDependantOriginID').touched ||
+                  frmServiceTypeEdit.get('ServiceTypeDependantOriginID').dirty) &&
+                  (frmServiceTypeEdit.get('ServiceTypeDependantOriginID').errors)">Selection required.</span>
+                                    </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+                                    <div class="form-group">
+                                          <label for="ddlServiceTypeOwnerGroupOverrideOriginBased">Assign To</label>&nbsp;
+                                          <select formControlName="ServiceTypeOwnerGroupOverrideOriginBased" name="ddlServiceTypeOwnerGroupOverrideOriginBased" class="form-control width-fix">
+                  <option value=''>- Select Business Area -</option>
+                  <option [title]="getToolTipMessage(group)" *ngFor="let group of serviceTypeOwnerGroups" [value]="group.ServiceTypeOwnerGroupID">{{group.ServiceTypeOwnerGroupName}}</option>
+                  </select>
+                                          <span class="help-block validation-msg" *ngIf="(frmServiceTypeEdit.get('ServiceTypeOwnerGroupOverrideOriginBased').touched ||
+                  frmServiceTypeEdit.get('ServiceTypeOwnerGroupOverrideOriginBased').dirty) &&
+                  (frmServiceTypeEdit.get('ServiceTypeOwnerGroupOverrideOriginBased').errors)">Selection required.</span>
+                                    </div>
+                              </div>
+                        </div>
+                        <div formGroupName="TimeBasedAssignment" class="row">
+                              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                    <div class="form-group">
+                                          <div class="checkbox-control">
+                                                <div class="checkbox">
+                                                      <label><input formControlName="AssignBasedOnTimePeriod" type="checkbox">&nbsp;Assign Based On Month and Day Time Period</label>
+                                                </div>
+                                          </div>
+                                          <span class="help-block validation-msg" *ngIf="frmServiceTypeEdit.get('TimeBasedAssignment').errors?.monthDay">
+                        Invalid month day input:<br>
+                        - Must be in 4 digit Month Day format (Jan 31st = 0131)<br>
+                        - From date cannot be less than To date<br>
+                        - February 29th is not allowed (0229)
+                  </span>
+                                    </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                                    <div class="form-group">
+                                          <label for="txtServiceTypeOwnerGroupOverrideMonthDayFrom">From</label>&nbsp;
+                                          <input formControlName="ServiceTypeOwnerGroupOverrideMonthDayFrom" name="txtServiceTypeOwnerGroupOverrideMonthDayFrom" type="text"
+                                                class="form-control from-to-fix" placeholder="ex. 0101" maxlength="4">
+                                          <span class="help-block validation-msg" *ngIf="(frmServiceTypeEdit.get('TimeBasedAssignment.ServiceTypeOwnerGroupOverrideMonthDayFrom').touched ||
+                  frmServiceTypeEdit.get('TimeBasedAssignment.ServiceTypeOwnerGroupOverrideMonthDayFrom').dirty) &&
+                  (frmServiceTypeEdit.get('TimeBasedAssignment.ServiceTypeOwnerGroupOverrideMonthDayFrom').errors)">
+                  Required.
+                  </span>
+                                    </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-6 col-md-2 col-lg-2">
+                                    <div class="form-group">
+                                          <label for="txtServiceTypeOwnerGroupOverrideMonthDayTo">To</label>&nbsp;
+                                          <input formControlName="ServiceTypeOwnerGroupOverrideMonthDayTo" name="txtServiceTypeOwnerGroupOverrideMonthDayTo" type="text"
+                                                class="form-control from-to-fix" placeholder="ex. 1231" maxlength="4">
+                                          <span class="help-block validation-msg" *ngIf="(frmServiceTypeEdit.get('TimeBasedAssignment.ServiceTypeOwnerGroupOverrideMonthDayTo').touched ||
+                  frmServiceTypeEdit.get('TimeBasedAssignment.ServiceTypeOwnerGroupOverrideMonthDayTo').dirty) &&
+                  (frmServiceTypeEdit.get('TimeBasedAssignment.ServiceTypeOwnerGroupOverrideMonthDayTo').errors)">
+                  Required.
+                  </span>
+                                    </div>
+                              </div>
+                              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+                                    <div class="form-group">
+                                          <label for="ddlServiceTypeOwnerGroupOverrideID">Assign To</label>&nbsp;
+                                          <select formControlName="ServiceTypeOwnerGroupOverrideID" name="ddlServiceTypeOwnerGroupOverrideID" class="form-control width-fix">
+                  <option value="">- Select Business Area -</option>
+                  <option [title]="getToolTipMessage(group)" *ngFor="let group of serviceTypeOwnerGroups" [value]="group.ServiceTypeOwnerGroupID">{{group.ServiceTypeOwnerGroupName}}</option>
+                  </select>
+                                          <span class="help-block validation-msg" *ngIf="(frmServiceTypeEdit.get('TimeBasedAssignment.ServiceTypeOwnerGroupOverrideID').touched ||
+                  frmServiceTypeEdit.get('TimeBasedAssignment.ServiceTypeOwnerGroupOverrideID').dirty) &&
+                  (frmServiceTypeEdit.get('TimeBasedAssignment.ServiceTypeOwnerGroupOverrideID').errors)">Selection required.</span>
+                                    </div>
+                              </div>
+                        </div>
+                  </div>
+            </fieldset>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <fieldset class="custom-border">
+                  <legend class="custom-border">Description</legend>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-10 col-lg-10">
+                        <label for="txtServiceTypeDescription">Description</label>
+                        <textarea formControlName="ServiceTypeDescription" rows="3" class="form-control" name="txtServiceTypeDescription" placeholder="Service Type Description"
+                              maxlength="255"></textarea>
+                        <span class="help-block validation-msg" *ngIf="(frmServiceTypeEdit.get('ServiceTypeDescription').touched ||
+                  frmServiceTypeEdit.get('ServiceTypeDescription').dirty) &&
+                  (frmServiceTypeEdit.get('ServiceTypeDescription').errors)">Required (between 5 - 255 characters).</span>
+                  </div>
+                  <div class="form-group col-xs-12 col-sm-6 col-md-2 col-lg-2 pull-right">
+                        <button type="submit" class="btn btn-primary btn-margin-top" [disabled]="!frmServiceTypeEdit.valid || generalService.disableButton">
+                        <span *ngIf="generalService.disableButton"><i class="glyphicon glyphicon-refresh glyphicon-spin"></i></span>
+                              {{generalService.saveButtonText}}
+                        </button>
+                        <button type="button" class="btn btn-success btn-margin-top" (click)="goBack()" [disabled]="generalService.disableButton">Go Back</button>
+                  </div>
+            </fieldset>
+      </div>
+</form>

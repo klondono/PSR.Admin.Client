@@ -1,0 +1,108 @@
+<form *ngIf="frmServiceTypeActionTypeEdit" [formGroup]="frmServiceTypeActionTypeEdit" novalidate (ngSubmit)="saveActionTypeLinks()">
+  <fieldset class="custom-border">
+    <legend class="custom-border">Action Type Links</legend>
+    <div formArrayName="serviceTypeRequestActionTypeLinks">
+      <div class="panel panel-default awesome-panel awesome-shadow" *ngFor="let actionTypeLink of actionTypeLinkArray.controls; let i=index">
+        <div class="panel-heading">
+          <label>Action Type Id: {{actionTypeLink.get('RequestActionTypeID').value ? actionTypeLink.get('RequestActionTypeID').value : 0}}</label>
+          <span class="glyphicon glyphicon-remove pull-right" *ngIf="frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').length > 0"
+            (click)="removeActionTypeLink(i)"></span>
+        </div>
+        <div class="panel-body" [formGroupName]="i">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              <label>Action Type</label>&nbsp;<small class="text-danger">*</small>
+              <select formControlName="RequestActionTypeID" class="form-control">
+                      <option value="">- Select Action Type -</option>
+                      <option *ngFor="let type of requestActionTypes" [value]="type.RequestActionTypeID">{{type.RequestActionTypeName}}</option>
+              </select>
+              <span class="help-block validation-msg" *ngIf="(frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('RequestActionTypeID').touched ||
+                      frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('RequestActionTypeID').dirty) &&
+                      (frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('RequestActionTypeID').errors)">Selection Required.</span>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              <label>Action Can Be Added By</label>&nbsp;<small class="text-danger">*</small>
+              <input formControlName="AddActionActiveDirectoryGroupName" type="text" class="form-control" placeholder="Active Directory Group">
+              <span class="help-block validation-msg" *ngIf="(frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('AddActionActiveDirectoryGroupName').touched ||
+                      frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('AddActionActiveDirectoryGroupName').dirty) &&
+                      (frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('AddActionActiveDirectoryGroupName').errors)">Required (between 5 - 100 characters).</span>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              <label>Action Can Be Updated By</label>&nbsp;<small class="text-danger">*</small>
+              <input formControlName="UpdateActionActiveDirectoryGroupName" type="text" class="form-control" placeholder="Active Directory Group">
+              <span class="help-block validation-msg" *ngIf="(frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('UpdateActionActiveDirectoryGroupName').touched ||
+                      frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('UpdateActionActiveDirectoryGroupName').dirty) &&
+                      (frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('UpdateActionActiveDirectoryGroupName').errors)">Required (between 5 - 100 characters).</span>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              <label>Action Can Be Deleted By</label>&nbsp;<small class="text-danger">*</small>
+              <input formControlName="DeleteActionActiveDirectoryGroupName" type="text" class="form-control" placeholder="Active Directory Group">
+              <span class="help-block validation-msg" *ngIf="(frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('DeleteActionActiveDirectoryGroupName').touched ||
+                      frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('DeleteActionActiveDirectoryGroupName').dirty) &&
+                      (frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('DeleteActionActiveDirectoryGroupName').errors)">Required (between 5 - 100 characters).</span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              <label>List Sequence</label>&nbsp;<small class="text-danger">*</small>
+              <input formControlName="ListSequence" type="number" class="form-control" placeholder="Enter number">
+              <span class="help-block validation-msg" *ngIf="(frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('ListSequence').touched ||
+                      frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('ListSequence').dirty) &&
+                      (frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('ListSequence').errors)">Required (greater than 0).</span>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              <label>Maximumum Allowed Occurrences</label>
+              <input formControlName="MaximumAllowedOcurrence" type="number" class="form-control" placeholder="Enter number or leave blank">
+              <span class="help-block validation-msg" *ngIf="(frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('MaximumAllowedOcurrence').touched ||
+                      frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('MaximumAllowedOcurrence').dirty) &&
+                      (frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('MaximumAllowedOcurrence').errors)">Must be greater than zero.</span>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              <label>Preceding Action Type Ids</label>
+              <input formControlName="PrecedenceConstraintRequestActionTypeIDValue" type="text" class="form-control" placeholder="Ex: 10,12,29">
+              <span class="help-block validation-msg" *ngIf="(frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('PrecedenceConstraintRequestActionTypeIDValue').touched ||
+                      frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('PrecedenceConstraintRequestActionTypeIDValue').dirty) &&
+                      (frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('PrecedenceConstraintRequestActionTypeIDValue').errors)">Invalid.</span>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              <label>Preceding Action Type Id Rule</label>
+              <select formControlName="PrecedenceConstraintLogicalOperatorIsORFlag" class="form-control">
+                      <option value="">- Select Rule -</option>
+                      <option *ngFor="let operator of precedenceConstraintLogicalOperatorTypes" [value]="operator.BlnValue">{{operator.Label}}</option>
+              </select>
+              <span class="help-block validation-msg" *ngIf="(frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('PrecedenceConstraintLogicalOperatorIsORFlag').touched ||
+                      frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('PrecedenceConstraintLogicalOperatorIsORFlag').dirty) &&
+                      (frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('PrecedenceConstraintLogicalOperatorIsORFlag').errors)">Selection Required.</span>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+              <label>Where Is Action Type Displayed</label>&nbsp;<small class="text-danger">*</small>
+              <select formControlName="RequestWorkspaceDisplayCode" class="form-control">
+                      <option value="">- Select How Displayed -</option>
+                      <option *ngFor="let code of displayCodeTypes" [value]="code.DisplayCode">{{code.DisplayCodeName}}</option>
+              </select>
+              <span class="help-block validation-msg" *ngIf="(frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('RequestWorkspaceDisplayCode').touched ||
+                    frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('RequestWorkspaceDisplayCode').dirty) &&
+                    (frmServiceTypeActionTypeEdit.get('serviceTypeRequestActionTypeLinks').at(i).get('RequestWorkspaceDisplayCode').errors)">Selection Required.</span>
+            </div>
+            <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="addToFormArrayLink">
+      <a (click)="addActionTypeLink()">Link another action type +</a>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary btn-margin-bottom" [disabled]="!frmServiceTypeActionTypeEdit.valid || generalService.disableButton">
+        <span *ngIf="generalService.disableButton"><i class="glyphicon glyphicon-refresh glyphicon-spin"></i></span>
+        {{generalService.saveButtonText}}
+        </button>
+        <button type="button" class="btn btn-success btn-margin-bottom" (click)="goBack()" [disabled]="generalService.disableButton">Go Back</button>
+      </div>
+    </div>
+  </fieldset>
+</form>

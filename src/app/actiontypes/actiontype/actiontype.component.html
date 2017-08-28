@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+    <div class="panel-heading-blue">
+        {{panelHeaderInfo?.panelTitle}}
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-tabs">
+            <li [class.active]="isGeneral"><a routerLink="Edit" routerLinkActive="active">General</a></li>
+            <li [class.active]="isCustomFields" [class.disabled]="disableTab"><a routerLink="CustomFields" routerLinkActive="active">Custom Fields</a></li>
+        </ul>
+        <div class="tab-body">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

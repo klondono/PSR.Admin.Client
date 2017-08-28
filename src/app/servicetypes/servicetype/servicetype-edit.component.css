@@ -1,0 +1,25 @@
+.width-fix{
+    width:240px;
+}
+.width-expectedStatus{
+    width:235px;
+}
+.from-to-fix {
+    width:110px;
+}
+.subFormControl{
+    padding-left:20px;
+}
+.form-group{
+    margin-bottom: 15px!important;
+}
+.checkbox-control {
+    height:34px;
+}
+.checkbox, .radio {
+    margin-top: 5px!important;
+}
+/*override checkbox label font-weight*/
+.checkbox > label {
+  font-weight: 700;
+}

@@ -1,0 +1,13 @@
+.spinner {
+    position:relative;
+    margin: 1% auto;
+    width:0%;
+}
+.spinner:after {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    background: url("/assets/img/ripple.gif");
+    background-size: cover;
+    content: '';
+}

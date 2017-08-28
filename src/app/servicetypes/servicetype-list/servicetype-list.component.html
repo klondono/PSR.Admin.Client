@@ -1,0 +1,23 @@
+<div class="panel panel-default" *ngIf="serviceTypes">
+  <div class="panel-heading-blue">
+    Service Types<div class="pull-right"><button class="btn btnPanel awesome-shadow" (click)="goToServiceType(0)">Add New</button></div>
+  </div>
+  <div class="panel-body">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-4" *ngFor="let serviceType of serviceTypes">
+          <div class="card awesome-shadow" (click)="goToServiceType(serviceType.ServiceTypeID)">
+            <div class="card-header">
+              <div class="card-header-text">{{serviceType.ServiceTypeName}}</div>
+            </div>
+            <div class="card-body">
+                <div class="card-subHeader-text">{{serviceType.ServiceTypeOwnerGroup?.ServiceTypeOwnerGroupName}}</div>
+                <div>{{serviceType.ServiceTypeDescription}}</div>
+            </div>
+            <p>Edit {{serviceType.ServiceTypeName}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

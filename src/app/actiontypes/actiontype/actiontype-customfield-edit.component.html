@@ -1,0 +1,166 @@
+<form *ngIf="frmActionTypeCustomField" [formGroup]="frmActionTypeCustomField" novalidate (ngSubmit)="saveCustomField()">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <fieldset class="custom-border">
+      <legend class="custom-border">{{addEditMode}}</legend>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <label>Input Sequence</label>&nbsp;<small class="text-danger">*</small>
+          <input formControlName="InputSequence" type="number" class="form-control" placeholder="Enter Number">
+          <span class="help-block validation-msg" *ngIf="(frmActionTypeCustomField.get('InputSequence').touched ||
+                        frmActionTypeCustomField.get('InputSequence').dirty) &&
+                        (frmActionTypeCustomField.get('InputSequence').errors)">Required (greater than 0).</span>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <label>Field Label</label>&nbsp;<small class="text-danger">*</small>
+          <input maxlength="50" formControlName="LabelName" type="text" class="form-control" placeholder="Field Label Name">
+          <span class="help-block validation-msg" *ngIf="(frmActionTypeCustomField.get('LabelName').touched ||
+                        frmActionTypeCustomField.get('LabelName').dirty) &&
+                        (frmActionTypeCustomField.get('LabelName').errors)">Required (max 50 characters).</span>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <label>Required Field Rule</label>&nbsp;<small class="text-danger">*</small>
+          <select formControlName="RequiredFlag" class="form-control">
+                        <option *ngFor="let required of requiredFieldOptions" [value]="required.BlnValue">{{required.Label}}</option>
+                </select>
+          <span class="help-block validation-msg" *ngIf="(frmActionTypeCustomField.get('RequiredFlag').touched ||
+                        frmActionTypeCustomField.get('RequiredFlag').dirty) &&
+                        (frmActionTypeCustomField.get('RequiredFlag').errors)">Selection required.</span>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <label>Field Type</label>&nbsp;<small class="text-danger">*</small>
+          <select formControlName="CustomFieldTypeID" class="form-control">
+                        <option [title]="type.CustomFieldTypeDescription" *ngFor="let type of customFieldTypes" [value]="type.CustomFieldTypeID">{{type.CustomFieldTypeName}}</option>
+                </select>
+          <span class="help-block validation-msg" *ngIf="(frmActionTypeCustomField.get('CustomFieldTypeID').touched ||
+                        frmActionTypeCustomField.get('CustomFieldTypeID').dirty) &&
+                        (frmActionTypeCustomField.get('CustomFieldTypeID').errors)">Selection required.</span>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <label>Text Field Data Type</label>&nbsp;<small class="text-danger">*</small>
+          <select formControlName="CustomFieldDataTypeID" class="form-control">
+                        <option [title]="dataType.CustomFieldDataTypeDescription" *ngFor="let dataType of customFieldDataTypes" [value]="dataType.CustomFieldDataTypeID">{{dataType.CustomFieldDataTypeName}}</option>
+                </select>
+          <span class="help-block validation-msg" *ngIf="(frmActionTypeCustomField.get('CustomFieldDataTypeID').touched ||
+                        frmActionTypeCustomField.get('CustomFieldDataTypeID').dirty) &&
+                        (frmActionTypeCustomField.get('CustomFieldDataTypeID').errors)">Selection required.</span>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <label>Placeholder Text</label>&nbsp;<small class="text-danger">*</small>
+          <input maxlength="50" formControlName="PlaceholderText" type="text" class="form-control" placeholder="Placeholder Text">
+          <span class="help-block validation-msg" *ngIf="(frmActionTypeCustomField.get('PlaceholderText').touched ||
+                        frmActionTypeCustomField.get('PlaceholderText').dirty) &&
+                        (frmActionTypeCustomField.get('PlaceholderText').errors)">Required (max 50 characters).</span>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <label>Field Text Alignment</label>&nbsp;<small class="text-danger">*</small>
+          <select formControlName="TextAlignment" class="form-control">
+                        <option *ngFor="let txtOpt of textAlignmentOptions" [value]="txtOpt.StrValue">{{txtOpt.Label}}</option>
+                </select>
+          <span class="help-block validation-msg" *ngIf="(frmActionTypeCustomField.get('TextAlignment').touched ||
+                        frmActionTypeCustomField.get('TextAlignment').dirty) &&
+                        (frmActionTypeCustomField.get('TextAlignment').errors)">Selection required.</span>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <label>List Value Populates Comments</label>&nbsp;<small class="text-danger">*</small>
+          <select formControlName="DisplayFieldValueInCommentsFlag" class="form-control">
+                        <option *ngFor="let txtOpt of valueInCommentsFieldOptions" [value]="txtOpt.BlnValue">{{txtOpt.Label}}</option>
+                </select>
+          <span class="help-block validation-msg" *ngIf="(frmActionTypeCustomField.get('TextAlignment').touched ||
+                        frmActionTypeCustomField.get('TextAlignment').dirty) &&
+                        (frmActionTypeCustomField.get('TextAlignment').errors)">Selection required.</span>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <label>Grouping Identifier 1</label>
+          <input maxlength="25" formControlName="GroupingIdentifier1" type="text" class="form-control" placeholder="Alternate Field Identifier">
+          <span class="help-block validation-msg" *ngIf="(frmActionTypeCustomField.get('GroupingIdentifier1').touched ||
+              frmActionTypeCustomField.get('GroupingIdentifier1').dirty) &&
+              (frmActionTypeCustomField.get('GroupingIdentifier1').errors)">Cannot exceed 25 characters.</span>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <label>Grouping Identifier 2</label>
+          <input maxlength="25" formControlName="GroupingIdentifier2" type="text" class="form-control" placeholder="Alternate Field Identifier">
+          <span class="help-block validation-msg" *ngIf="(frmActionTypeCustomField.get('GroupingIdentifier2').touched ||
+              frmActionTypeCustomField.get('GroupingIdentifier2').dirty) &&
+              (frmActionTypeCustomField.get('GroupingIdentifier2').errors)">Cannot exceed 25 characters.</span>
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="form-group col-xs-12 col-sm-6 col-md-9 col-lg-9">
+          <label>Tooltip Message</label>&nbsp;<small class="text-danger">*</small>
+          <input maxlength="255" formControlName="TooltipMessage" type="text" class="form-control" placeholder="Message that will be displayed when user hovers over field.">
+          <span class="help-block validation-msg" *ngIf="(frmActionTypeCustomField.get('TooltipMessage').touched ||
+              frmActionTypeCustomField.get('TooltipMessage').dirty) &&
+              (frmActionTypeCustomField.get('TooltipMessage').errors)">Required (cannot exceed 255 characters).</span>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3">
+        </div>
+      </div>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="form-group col-xs-12 col-sm-6 col-md-9 col-lg-9">
+          <label for="txtServiceTypeDescription">Description</label>
+          <textarea formControlName="Description" rows="2" class="form-control" placeholder="Custom Field Description"
+            maxlength="255"></textarea>
+          <span class="help-block validation-msg" *ngIf="(frmActionTypeCustomField.get('Description').touched ||
+                  frmActionTypeCustomField.get('Description').dirty) &&
+                  (frmActionTypeCustomField.get('Description').errors)">Required (between 5 - 255 characters).</span>
+        </div>
+        <div class="form-group col-xs-12 col-sm-6 col-md-3 col-lg-3 pull-right">
+          <button type="submit" class="btn btn-primary btn-margin-bottom" [disabled]="!frmActionTypeCustomField.valid || generalService.disableButton">
+            <span *ngIf="generalService.disableButton"><i class="glyphicon glyphicon-refresh glyphicon-spin"></i></span>
+                {{generalService.saveButtonText}}
+          </button>
+          <button type="button" class="btn btn-warning btn-margin-bottom" (click)="getCustomField(0)" [disabled]="generalService.disableButton">New</button>
+          <button type="button" class="btn btn-success btn-margin-bottom" (click)="goBack()" [disabled]="generalService.disableButton">Go Back</button>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  </form>
+<div *ngIf="customFields.length" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <fieldset class="custom-border">
+      <legend class="custom-border">Custom Fields for Action Type</legend>
+        <table class="table table-condensed table-hover table-striped">
+          <thead><tr><th>Action</th><th>Input Seq</th><th>Field Label</th><th>Field Data Type</th><th>Field Type</th><th>Required</th></tr></thead>
+          <tbody>
+            <tr *ngFor="let field of customFields">
+              <td>
+                <button title="Edit Custom Field" type="button" (click)="getCustomField(field.RequestActionTypeCustomFieldID)" class="btn btn-default">Edit</button>
+                <button title="Delete Custom Field" type="button" (click)="deleteCustomField(field)" class="btn btn-default">Delete</button>
+              </td>
+              <td>{{field.InputSequence}}</td><td>{{field.LabelName}}</td>
+              <td>
+                <div *ngIf="field.CustomFieldTypeID == 1">
+                    <input class="form-control" type="text" [value]="field.CustomFieldDataType.CustomFieldDataTypeName" [title]="field.TooltipMessage" [style.text-align]="field.TextAlignment" [placeholder]="field.PlaceholderText">
+                </div>
+                <div *ngIf="field.CustomFieldTypeID == 2">
+                    <label class="radio-inline"><input [title]="field.TooltipMessage" type="radio" value="Yes" ng-model="field.DisplayData" />Yes</label>
+                    <label class="radio-inline"><input [title]="field.TooltipMessage" type="radio" value="No" ng-model="field.DisplayData" />No</label>
+                </div>
+                <div *ngIf="field.CustomFieldTypeID == 3">
+                    <label class="radio-inline"><input [title]="field.TooltipMessage" type="radio" value="Yes" ng-model="field.DisplayData" />Yes</label>
+                    <label class="radio-inline"><input [title]="field.TooltipMessage" type="radio" value="No" ng-model="field.DisplayData" />No</label>
+                    <label class="radio-inline"><input [title]="field.TooltipMessage" type="radio" value="NA" ng-model="field.DisplayData" />N/A</label>
+                </div>
+                <div *ngIf="field.CustomFieldTypeID == 4">Date
+                </div>
+                <div *ngIf="field.CustomFieldTypeID >= 100">
+                    <select class="form-control">
+                        <option value="">- {{field.PlaceholderText}} -</option>
+                        <option [title]="field.TooltipMessage" *ngFor="let item of field.CustomFieldType.CustomFieldSelectListItems" [value]="item.CustomFieldSelectListItemValue">{{item.CustomFieldSelectListItemLabel}}</option>
+                    </select>
+                </div>
+              </td>
+              <td>{{field.CustomFieldType.CustomFieldTypeName}}</td>
+              <td>{{field.RequiredFlag}}</td>
+            </tr>
+          </tbody>
+        </table>
+    </fieldset>
+</div>
+
