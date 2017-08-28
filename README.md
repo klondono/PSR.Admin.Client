@@ -1,6 +1,6 @@
 # PsradminClient
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.30.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0.
 
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -33,3 +33,5 @@ To get more help on the `angular-cli` use `ng help` or go check out the [Angular
 ## PA Notes
 
 The ng2-toastr package does not allow for global setting of positionClass for toastr messages. Therefore, the default positionClass was set to 'toast-bottom-full-width' in node_modules\ng2-toastr\src\toast-options.js
+
+Please refer to the PSR.Admin.Services repo for the api that this project consumes
